@@ -10,7 +10,7 @@ public class DireccionController {
 
 	@GetMapping("/listarPaises")
 	public String iniciarPaises() {
-		return "/pais.html";
+		return "pais.html";
 	}
 	
 	
