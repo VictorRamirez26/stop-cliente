@@ -3,6 +3,7 @@ package com.uncode.stop.cliente.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/direccion")
@@ -10,8 +11,14 @@ public class DireccionController {
 
 	@GetMapping("/listarPaises")
 	public String iniciarPaises() {
-		return "pais.html";
+		return "/pais/pais.html";
 	}
+	
+	@GetMapping("/editar-pais")
+	public String editPais(@RequestParam(value = "accion") String accion) {
+		return "editPais.html";
+	}
+	
 	
 	
 }
