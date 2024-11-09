@@ -80,18 +80,31 @@
             <div class="col-lg-10"> <!-- Aca se puede ajustar el ancho del formulario -->
             
                 <div class="card">
-                    <div class="card-header"><strong>Pais</strong></div>
+                    <div class="card-header"><strong th:text="${accion}"></strong><strong> País</strong></div>
                 
-                    <form th:action="@{/aceptarPais}" method="post">
+                    <form >
                         <div class="card-body card-block">
                             
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
-                                <input name="nombre" type="text" id="nombre" placeholder="Ingrese su nombre" class="form-control" required>
+                                <input name="nombre" type="text" id="nombre" placeholder="Ingrese el nombre" 
+                                	class="form-control" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
                             </div>
                             
-                            <button type="submit" class="btn btn-primary">Crear</button>
+	                        <button type="submit" class="btn btn-dark" 
+	                         	formaction="/direccion/listarPaises" formmethod="GET">Volver</button>
+	                         	
+	                        <button th:if="${accion == 'Crear'}" type="submit" class="btn btn-primary" 
+	                         	formaction="/direccion/actualizar-pais" formmethod="POST">Crear país</button>
+	                         	
+	                       	<button th:if="${accion == 'Modificar'}" type="submit" class="btn btn-primary" 
+	                       		formaction="/direccion/actualizar-pais" formmethod="POST">Modificar país</button>
+	                       	
+							<button th:if="${accion == 'Eliminar'}" type="submit" class="btn btn-danger"
+					 			formaction="/direccion/eliminar-pais" formmethod="POST">Eliminar país</button>
+				 			
                         </div>
+                        
                     </form>
                 </div>
 
