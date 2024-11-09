@@ -34,7 +34,7 @@ table.dataTable tbody tr:hover {
     position: absolute !important;
     left: 50% !important;
     top: 55%; /* Ajusta la posición vertical del menú */
-    transform: translateX(-60%) scale(0.7) !important; 
+    transform: translateX(-60%) scale(0.01) !important; 
     min-width: 160px; /* Opcional: tamaño mínimo del menú */
     
     /* Transición de la animación */
