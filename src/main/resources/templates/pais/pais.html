@@ -34,69 +34,67 @@
     <!-- LEFT PANEL -->
     <div th:replace="~{fragments/left-panel}"></div>
 
-    <!-- RIGHT PANEL -->
-    <div id="right-panel" class="right-panel">
-
-        <!-- HEADER -->
-        <div th:replace="~{fragments/header :: header}"></div>
-
+	<!-- RIGHT PANEL -->
+	<div id="right-panel" class="right-panel">
 	
-        	<div class="content">
-            
-            <!-- TABLE -->
-            <div class="animated fadeIn">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Lista de Países</strong>
-                            </div>
-                            
-							<div class="card-body">
-							    <a th:href="@{/direccion/editar-pais(accion='Crear')}" class="btn btn-primary">
-							        <i class="ti-plus"></i>&nbsp; Agregar nuevo país
-							    </a>
-							</div>
-
-                            <div class="card-body">
-                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Acciones</th>
-                                            <th>Nombre</th>
-                                        </tr>
-                                    </thead>
+	    <!-- HEADER -->
+	    <div th:replace="~{fragments/header :: header}"></div>
+	
+	    <div class="content">
+	        
+	        <!-- TABLE -->
+	        <div class="animated fadeIn">
+	            <div class="row">
+	                <div class="col-md-12">
+	                    <div class="card">
+	                        <div class="card-header">
+	                            <strong class="card-title">Lista de Países</strong>
+	                        </div>
+	                        
+	                        <div class="card-body">
+	                            <a th:href="@{/direccion/editar-pais(accion='Crear')}" class="btn btn-primary">
+	                                <i class="ti-plus"></i>&nbsp; Agregar nuevo país
+	                            </a>
+	                        </div>
+	
+	                        <div class="card-body">
+	                            <table id="bootstrap-data-table" class="table table-striped table-bordered">
+	                                <thead>
+	                                    <tr>
+	                                        <th>Acciones</th>
+	                                        <th>Nombre</th>
+	                                    </tr>
+	                                </thead>
 									<tbody>
-
-									    <tr>
+									    <!-- Iterar sobre la lista de países usando Thymeleaf -->
+									    <tr th:each="pais : ${paises}">
 									        <td>
-												<div class="dropdown">
-												    <button class="btn btn-secondary dropdown-toggle custom-dropdown" type="button" aria-haspopup="true" aria-expanded="false">
-												        Opciones
-												    </button>
-												    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-												        <a class="dropdown-item" th:href="@{/direccion/editar-pais(accion='Modificar')}" >Modificar</a>
-												        <a class="dropdown-item" th:href="@{/direccion/editar-pais(accion='Consultar')}">Consultar</a>
-												        <a class="dropdown-item" th:href="@{/direccion/editar-pais(accion='Eliminar')}">Eliminar</a>
-												    </div>
-												</div>
+									            <div class="dropdown">
+									                <button class="btn btn-secondary dropdown-toggle custom-dropdown" type="button" aria-haspopup="true" aria-expanded="false">
+									                    Opciones
+									                </button>
+									                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									                    <a class="dropdown-item" th:href="@{/direccion/editar-pais(accion='Modificar', id=${pais.id})}">Modificar</a>
+									                    <a class="dropdown-item" th:href="@{/direccion/editar-pais(accion='Consultar', id=${pais.id})}">Consultar</a>
+									                    <a class="dropdown-item" th:href="@{/direccion/editar-pais(accion='Eliminar', id=${pais.id})}">Eliminar</a>
+									                </div>
+									            </div>
 									        </td>
-									        <td>Tiger Nixon</td>
+									        <td th:text="${pais.nombre}">Nombre del País</td>
 									    </tr>
-									    
 									</tbody>
+	                            </table>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div><!-- .animated -->
+	        <!-- END TABLE -->
+	
+	    </div><!-- .content -->
+	
+	</div><!-- #right-panel -->
 
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- .animated -->
-            <!-- END TABLE -->
-
-        </div><!-- .content -->
-
-    </div><!-- #right-panel -->
     
     
     <!-- END RIGHT PANEL -->

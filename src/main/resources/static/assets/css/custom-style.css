@@ -41,13 +41,13 @@ table.dataTable tbody tr:hover {
     opacity: 0 !important;
     display: block !important; /* Muestra siempre el menú */
     visibility: hidden !important; /* Oculta inicialmente */
-    transition: transform 0.2s ease-out, opacity 0.2s ease-out !important; /* Transición */
+    transition: transform 0.1s ease-out, opacity 0.05s ease-out !important; /* Transición */
 }
 
 /* Muestra el menú animado cuando está abierto */
 .custom-dropdown.show + .dropdown-menu {
     opacity: 1 !important;
-    transform: translateX(+22%) scale(1) !important; /* Centro + escala al abrir */
+    transform: translateX(+24%) scale(1) !important; /* Centro + escala al abrir */
     visibility: visible !important;
 }
 

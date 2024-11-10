@@ -86,9 +86,12 @@
                         <div class="card-body card-block">
                             
                             <div class="form-group">
+                            	<input type="hidden" name="id" th:value="${pais.id}"/>
+                            	
                                 <label for="nombre">Nombre</label>
-                                <input name="nombre" type="text" id="nombre" placeholder="Ingrese el nombre" 
-                                	class="form-control" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
+								<input name="nombre" type="text" id="nombre" placeholder="Ingrese el nombre" th:value="${pais.nombre}"
+								       class="form-control" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
+
                             </div>
                             
 	                        <button type="submit" class="btn btn-dark" 
