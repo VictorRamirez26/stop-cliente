@@ -40,7 +40,7 @@ public class LocalidadController {
 	@GetMapping("/listarLocalidades")
 	public String iniciarLocalidades(ModelMap model) {
 		List<LocalidadDTO> localidades = localidadService.listar();
-		model.put("localidad", localidades);
+		model.put("localidades", localidades);
 		return "/localidad/localidad.html";
 	}
 	
@@ -64,7 +64,7 @@ public class LocalidadController {
 		model.put("provincias", provincias);
 		model.put("departamentos", departamentos);
 		model.put("accion", accion);
-		return "/departamento/editDepartamento.html";
+		return "/localidad/editLocalidad.html";
 	}
 	
     @PostMapping("/actualizar-localidad")

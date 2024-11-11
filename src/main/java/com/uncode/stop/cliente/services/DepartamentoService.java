@@ -48,4 +48,8 @@ public class DepartamentoService {
 	public List<DepartamentoDTO> listar() {
 		return dao.listar();
 	}
+	
+	public List<DepartamentoDTO> listarDepartamentosPorProvincia(UUID idProvincia) {
+		return dao.listarDepartamentosPorProvincia(idProvincia);
+	}
 }

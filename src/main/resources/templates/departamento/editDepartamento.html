@@ -125,33 +125,30 @@
 							</div>
 							
 							<div class="form-group">
-								<label>País</label> 
-								<select class="form-control" name="paisId"
-									th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
-									<!-- Opción por defecto solo si es "Crear" -->
-									<option th:if="${accion == 'Crear'}" value="">Seleccione...</option>
-
-									<!-- Opciones de países -->
-									<option th:each="pais : ${paises}"
-										th:value="${pais.id}"
-										th:text="${pais.nombre}"
-										th:selected="${pais.id == departamento.provincia.pais.id}"></option>
-								</select>
+							    <label>País</label> 
+							    <select class="form-control" id="paisSelect" name="paisId" 
+							            onchange="cargarProvincias(this.value)"
+							            th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
+							        <option th:if="${accion == 'Crear'}" value="">Seleccione...</option>
+							        <option th:each="pais : ${paises}" th:value="${pais.id}"
+							                th:text="${pais.nombre}" 
+							                th:selected="${pais.id == departamento.provincia.pais.id}">
+							        </option>
+							    </select>
 							</div>
 							
 							<div class="form-group">
-								<label>Provincia</label> <select class="form-control" name="provinciaId"
-									th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
-									<!-- Opción por defecto solo si es "Crear" -->
-									<option th:if="${accion == 'Crear'}" value="">Seleccione...</option>
-
-									<!-- Opciones de provincia -->
-									<option th:each="provincia : ${provincias}" th:value="${provincia.id}"
-										th:text="${provincia.nombre}"
-										th:selected="${provincia.id == departamento.provincia.id}"></option>
-								</select>
+							    <label>Provincia</label> 
+							    <select class="form-control" id="provinciaSelect" name="provinciaId"
+							            th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
+							        <option th:if="${accion == 'Crear'}" value="">Seleccione...</option>
+							        <!-- Opciones de provincia se actualizarán por AJAX -->
+							        <option th:each="provincia : ${provincias}" th:value="${provincia.id}"
+							                th:text="${provincia.nombre}" 
+							                th:selected="${provincia.id == departamento.provincia.id}">
+							        </option>
+							    </select>
 							</div>
-
 
 							<button type="submit" class="btn btn-dark"
 								formaction="/departamento/listarDepartamentos" formmethod="GET">Volver</button>
@@ -189,6 +186,51 @@
 
 	<!-- Scripts -->
 	<div th:replace="~{fragments/js-fragments :: scripts-comunes}"></div>
+	<script>
+	    // Función para cargar las provincias basadas en el país seleccionado
+	    async function cargarProvincias(paisId) {
+	        const provinciaSelect = document.getElementById("provinciaSelect");
+	        provinciaSelect.innerHTML = "<option value=''>Seleccione...</option>";  // Limpiar el select
+	
+	        if (!paisId) return;  // Si no hay ID de país, no hacemos nada
+	
+	        try {
+	            // Llamada al controlador del cliente para obtener las provincias
+	            const response = await fetch(`/provincia/listarProvinciasPorPais/${paisId}`);
+	
+	            // Verificar si la respuesta es exitosa
+	            if (!response.ok) throw new Error("Error al obtener las provincias");
+	
+	            // Convertir la respuesta a JSON
+	            const provincias = await response.json();
+	
+	            // Verificar si hay provincias para mostrar
+	            if (provincias.length === 0) {
+	                const option = document.createElement("option");
+	                option.value = "";
+	                option.textContent = "No se encontraron provincias";
+	                provinciaSelect.appendChild(option);
+	                return;
+	            }
+	
+	            // Rellenar el select con las provincias obtenidas
+	            provincias.forEach(provincia => {
+	                const option = document.createElement("option");
+	                option.value = provincia.id;
+	                option.textContent = provincia.nombre;
+	                provinciaSelect.appendChild(option);
+	            });
+	        } catch (error) {
+	            console.error("Error:", error);
+	            // Mostrar un mensaje de error si no se puede obtener las provincias
+	            const option = document.createElement("option");
+	            option.value = "";
+	            option.textContent = "Error al cargar provincias";
+	            provinciaSelect.appendChild(option);
+	        }
+	    }
+	</script>
+	
 
 </body>
 </html>

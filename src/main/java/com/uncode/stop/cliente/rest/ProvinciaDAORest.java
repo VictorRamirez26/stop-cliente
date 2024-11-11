@@ -61,4 +61,18 @@ public class ProvinciaDAORest {
 		return listaProvincias;
 	}
 	
+	public List<ProvinciaDTO> listarProvinciasPorPais(UUID paisId) {
+	    String uri = "http://localhost:9000/provincias/listarProvinciasPorPais/" + paisId;
+
+	    ResponseEntity<List<ProvinciaDTO>> response = restTemplate.exchange(
+	            uri, 
+	            HttpMethod.GET, 
+	            null, 
+	            new ParameterizedTypeReference<List<ProvinciaDTO>>() {}
+	    );
+
+	    return response.getBody();
+	}
+
+	
 }

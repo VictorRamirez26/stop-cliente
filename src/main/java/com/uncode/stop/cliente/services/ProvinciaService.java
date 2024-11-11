@@ -48,4 +48,8 @@ public class ProvinciaService {
 	public List<ProvinciaDTO> listar() {
 		return dao.listar();
 	}
+	
+	public List<ProvinciaDTO> listarProvinciasPorPais(UUID idPais) {
+		return dao.listarProvinciasPorPais(idPais);
+	}
 }

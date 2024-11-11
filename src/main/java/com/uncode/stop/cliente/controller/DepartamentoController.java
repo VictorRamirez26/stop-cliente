@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,5 +81,10 @@ public class DepartamentoController {
         return "redirect:/departamento/listarDepartamentos";
     }
 	
+    @GetMapping("/listarDepartamentosPorProvincia/{id}")
+    public ResponseEntity<List<DepartamentoDTO>> listarDepartamentos(@PathVariable("id") UUID idProvincia) {
+        List<DepartamentoDTO> departamentos = departamentoService.listarDepartamentosPorProvincia(idProvincia);
+        return ResponseEntity.ok(departamentos);  // Devolver departamentos en formato JSON
+    }
 	
 }
