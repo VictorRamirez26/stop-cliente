@@ -15,8 +15,8 @@ import com.uncode.stop.cliente.dtos.PaisDTO;
 import com.uncode.stop.cliente.services.PaisService;
 
 @Controller
-@RequestMapping("/direccion")
-public class DireccionController {
+@RequestMapping("/pais")
+public class PaisController {
 
 	@Autowired
 	private PaisService paisService;
@@ -52,13 +52,13 @@ public class DireccionController {
         } else {
         	paisService.modificar(id, nombre);
         }
-        return "redirect:/direccion/listarPaises";
+        return "redirect:/pais/listarPaises";
     }
 
     @PostMapping("/eliminar-pais")
     public String eliminarPais(@RequestParam("id") UUID id) {
         paisService.eliminar(id);
-        return "redirect:/direccion/listarPaises";
+        return "redirect:/pais/listarPaises";
     }
 	
 }
