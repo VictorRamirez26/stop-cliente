@@ -51,13 +51,20 @@ public class LocalidadController {
 		
 		LocalidadDTO localidad = null;
 		List<PaisDTO> paises = paisService.listar();
-		List<ProvinciaDTO> provincias = provinciaService.listar();
-		List<DepartamentoDTO> departamentos = departamentoService.listar();
+		
+		List<ProvinciaDTO> provincias;
+		List<DepartamentoDTO> departamentos;
 		
 		if (id == null) {
 			localidad = new LocalidadDTO();
+			provincias = provinciaService.listar();
+			departamentos = departamentoService.listar();
+			
 		}else {
 			localidad = localidadService.buscar(id);
+			provincias = provinciaService.listarProvinciasPorPais(localidad.getDepartamento().getProvincia().getPais().getId());
+			departamentos = departamentoService.listarDepartamentosPorProvincia(localidad.getDepartamento().getProvincia().getId());
+			
 		}
 		model.put("localidad", localidad);
 		model.put("paises", paises);

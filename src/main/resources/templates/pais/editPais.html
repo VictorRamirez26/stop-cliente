@@ -90,12 +90,12 @@
                             	
                                 <label for="nombre">Nombre</label>
 								<input name="nombre" type="text" id="nombre" placeholder="Ingrese el nombre" th:value="${pais.nombre}"
-								       class="form-control" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
+								       class="form-control" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}" required>
 
                             </div>
                             
 	                        <button type="submit" class="btn btn-dark" 
-	                         	formaction="/pais/listarPaises" formmethod="GET">Volver</button>
+	                         	formaction="/pais/listarPaises" formmethod="GET" formnovalidate>Volver</button>
 	                         	
 	                        <button th:if="${accion == 'Crear'}" type="submit" class="btn btn-primary" 
 	                         	formaction="/pais/actualizar-pais" formmethod="POST">Crear país</button>

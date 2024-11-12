@@ -90,13 +90,13 @@
                             	
                                 <label for="nombre">Nombre</label>
 								<input name="nombre" type="text" id="nombre" placeholder="Ingrese el nombre" th:value="${provincia.nombre}"
-								       class="form-control" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
+								       class="form-control" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}" required>
 								       
                             </div>
                             
                             <div class="form-group">
 					            <label>País</label>
-					            <select class="form-control" name="paisId" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
+					            <select class="form-control" name="paisId" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}" required>
 					                <!-- Opción por defecto solo si es "Crear" -->
 					                <option th:if="${accion == 'Crear'}" value="">Seleccione...</option>
 					
@@ -110,7 +110,7 @@
 							</div>
                             
 	                        <button type="submit" class="btn btn-dark" 
-	                         	formaction="/provincia/listarProvincias" formmethod="GET">Volver</button>
+	                         	formaction="/provincia/listarProvincias" formmethod="GET" formnovalidate>Volver</button>
 	                         	
 	                        <button th:if="${accion == 'Crear'}" type="submit" class="btn btn-primary" 
 	                         	formaction="/provincia/actualizar-provincia" formmethod="POST">Crear provincia</button>

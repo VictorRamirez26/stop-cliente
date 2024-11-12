@@ -46,12 +46,15 @@ public class DepartamentoController {
 		
 		DepartamentoDTO departamento = null;
 		List<PaisDTO> paises = paisService.listar();
-		List<ProvinciaDTO> provincias = provinciaService.listar();
+		
+		List<ProvinciaDTO> provincias;
 		
 		if (id == null) {
 			departamento = new DepartamentoDTO();
+			 provincias = provinciaService.listar();
 		}else {
 			departamento = departamentoService.buscar(id);
+			provincias = provinciaService.listarProvinciasPorPais(departamento.getProvincia().getPais().getId());
 		}
 		model.put("departamento", departamento);
 		model.put("paises", paises);
