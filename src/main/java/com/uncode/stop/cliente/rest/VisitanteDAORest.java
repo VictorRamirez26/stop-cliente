@@ -36,7 +36,7 @@ public class VisitanteDAORest {
     }
 
     public VisitanteDTO buscar(UUID id) {
-        String uri = baseUri + id;
+        String uri = baseUri + "/" + id;
         ResponseEntity<VisitanteDTO> response = restTemplate.getForEntity(uri, VisitanteDTO.class);
         VisitanteDTO visitante = response.getBody();
         return visitante;

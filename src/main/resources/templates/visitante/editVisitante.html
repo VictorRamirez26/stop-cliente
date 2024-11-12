@@ -81,46 +81,48 @@
             
                 <div class="card">
                     <div class="card-header"><strong th:text="${accion}"></strong><strong> Visitante</strong></div>
-                
-                    <form >
+
+                    <form>
                         <div class="card-body card-block">
-                            
+                            <!-- Campo oculto para el ID del visitante -->
+                            <input type="hidden" name="id" th:value="${visitante.id}">
+                            <input type="hidden" name="accion" th:value="${accion}">
+
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
-                                <input name="nombre" type="text" id="nombre" placeholder="Ingrese el nombre" 
-                                	class="form-control" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
+                                <input name="nombre" type="text" id="nombre" placeholder="Ingrese el nombre"
+                                       class="form-control" th:value="${visitante.nombre}"
+                                       th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
                             </div>
+
                             <div class="form-group">
                                 <label for="apellido">Apellido</label>
                                 <input name="apellido" type="text" id="apellido" placeholder="Ingrese el apellido"
-                                       class="form-control" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
+                                       class="form-control" th:value="${visitante.apellido}"
+                                       th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
                             </div>
+
                             <div class="form-group">
-                                <label for="dni">DNI</label>
-                                <input name="dni" type="text" id="dni" placeholder="Ingrese el DNI"
-                                       class="form-control" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
+                                <label for="numeroDeDocumento">DNI</label>
+                                <input name="numeroDeDocumento" type="text" id="numeroDeDocumento" placeholder="Ingrese el DNI"
+                                       class="form-control" th:value="${visitante.numeroDeDocumento}"
+                                       th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
                             </div>
-                            <div class="form-group">
-                                <label for="tipoVisita">Tipo Visita</label>
-                                <input name="tipoVisita" type="text" id="tipoVisita" placeholder="Ingrese el nombre"
-                                       class="form-control" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
-                            </div>
-                            
-	                        <button type="submit" class="btn btn-dark" 
-	                         	formaction="/direccion/listarPaises" formmethod="GET">Volver</button>
-	                         	
-	                        <button th:if="${accion == 'Crear'}" type="submit" class="btn btn-primary" 
-	                         	formaction="/visitante/actualizar-pais" formmethod="POST">Crear visitante</button>
-	                         	
-	                       	<button th:if="${accion == 'Modificar'}" type="submit" class="btn btn-primary" 
-	                       		formaction="/visitante/actualizar-visitante" formmethod="POST">Modificar visitante</button>
-	                       	
-							<button th:if="${accion == 'Eliminar'}" type="submit" class="btn btn-danger"
-					 			formaction="/visitante/eliminar-visitante" formmethod="POST">Eliminar visitante</button>
-				 			
+
+                            <button type="submit" class="btn btn-dark" formaction="/visitante/listarVisitantes" formmethod="GET">Volver</button>
+
+                            <button th:if="${accion == 'Crear'}" type="submit" class="btn btn-primary"
+                                    formaction="/visitante/actualizar-visitante" formmethod="POST">Crear visitante</button>
+
+                            <button th:if="${accion == 'Modificar'}" type="submit" class="btn btn-primary"
+                                    formaction="/visitante/actualizar-visitante" formmethod="POST">Modificar visitante</button>
+
+                            <button th:if="${accion == 'Eliminar'}" type="submit" class="btn btn-danger"
+                                    formaction="/visitante/eliminar-visitante" formmethod="POST">Eliminar visitante</button>
                         </div>
-                        
                     </form>
+
+
                 </div>
 
             </div><!-- .col-lg-6 -->

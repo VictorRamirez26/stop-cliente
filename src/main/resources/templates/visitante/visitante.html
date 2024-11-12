@@ -77,10 +77,11 @@
 												        Opciones
 												    </button>
 												    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-												        <a class="dropdown-item" th:href="@{/visitante/editar-visitante(accion='Modificar')}" >Modificar</a>
-												        <a class="dropdown-item" th:href="@{/visitante/editar-visitante(accion='Consultar')}">Consultar</a>
-												        <a class="dropdown-item" th:href="@{/visitante/editar-visitante(accion='Eliminar')}">Eliminar</a>
-												    </div>
+                                                        <a class="dropdown-item" th:href="@{/visitante/editar-visitante(accion='Modificar', id=${visitante.id})}">Modificar</a>
+                                                        <a class="dropdown-item" th:href="@{/visitante/editar-visitante(accion='Consultar', id=${visitante.id})}">Consultar</a>
+                                                        <a class="dropdown-item" th:href="@{/visitante/editar-visitante(accion='Eliminar', id=${visitante.id})}">Eliminar</a>
+
+                                                    </div>
 												</div>
 									        </td>
                                             <td th:text="${visitante.nombre}">Nombre del Visitante</td>
