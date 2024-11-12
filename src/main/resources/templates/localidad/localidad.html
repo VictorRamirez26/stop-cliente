@@ -48,12 +48,12 @@
 	                <div class="col-md-12">
 	                    <div class="card">
 	                        <div class="card-header">
-	                            <strong class="card-title">Lista de Países</strong>
+	                            <strong class="card-title">Lista de Localidades</strong>
 	                        </div>
 	                        
 	                        <div class="card-body">
-	                            <a th:href="@{/pais/editar-pais(accion='Crear')}" class="btn btn-primary">
-	                                <i class="ti-plus"></i>&nbsp; Agregar nuevo país
+	                            <a th:href="@{/localidad/editar-localidad(accion='Crear')}" class="btn btn-primary">
+	                                <i class="ti-plus"></i>&nbsp; Agregar nueva localidad
 	                            </a>
 	                        </div>
 	
@@ -62,25 +62,31 @@
 	                                <thead>
 	                                    <tr>
 	                                        <th>Acciones</th>
-	                                        <th>Nombre</th>
+	                                        <th>Localidad</th>
+	                                        <th>Departamento</th>
+	                                        <th>Provincia</th>
+	                                        <th>Pais</th>
 	                                    </tr>
 	                                </thead>
 									<tbody>
 									    <!-- Iterar sobre la lista de países usando Thymeleaf -->
-									    <tr th:each="pais : ${paises}">
+									    <tr th:each="localidad : ${localidades}">
 									        <td>
 									            <div class="dropdown">
 									                <button class="btn btn-secondary dropdown-toggle custom-dropdown" type="button" aria-haspopup="true" aria-expanded="false">
 									                    Opciones
 									                </button>
 									                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									                    <a class="dropdown-item" th:href="@{/pais/editar-pais(accion='Modificar', id=${pais.id})}">Modificar</a>
-									                    <a class="dropdown-item" th:href="@{/pais/editar-pais(accion='Consultar', id=${pais.id})}">Consultar</a>
-									                    <a class="dropdown-item" th:href="@{/pais/editar-pais(accion='Eliminar', id=${pais.id})}">Eliminar</a>
+									                    <a class="dropdown-item" th:href="@{/localidad/editar-localidad(accion='Modificar', id=${localidad.id})}">Modificar</a>
+									                    <a class="dropdown-item" th:href="@{/localidad/editar-localidad(accion='Consultar', id=${localidad.id})}">Consultar</a>
+									                    <a class="dropdown-item" th:href="@{/localidad/editar-localidad(accion='Eliminar', id=${localidad.id})}">Eliminar</a>
 									                </div>
 									            </div>
 									        </td>
-									        <td th:text="${pais.nombre}">Nombre del País</td>
+									        <td th:text="${localidad.nombre}">Localidad</td>
+									        <td th:text="${localidad.departamento.nombre}">Departamento</td>
+									        <td th:text="${localidad.departamento.provincia.nombre}">Provincia</td>
+					        	        	<td th:text="${localidad.departamento.provincia.pais.nombre}">País</td>
 									    </tr>
 									</tbody>
 	                            </table>
