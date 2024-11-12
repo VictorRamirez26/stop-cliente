@@ -110,13 +110,13 @@
 	                         	formaction="/direccion/listarPaises" formmethod="GET">Volver</button>
 	                         	
 	                        <button th:if="${accion == 'Crear'}" type="submit" class="btn btn-primary" 
-	                         	formaction="/direccion/actualizar-pais" formmethod="POST">Crear país</button>
+	                         	formaction="/visitante/actualizar-pais" formmethod="POST">Crear visitante</button>
 	                         	
 	                       	<button th:if="${accion == 'Modificar'}" type="submit" class="btn btn-primary" 
-	                       		formaction="/direccion/actualizar-pais" formmethod="POST">Modificar país</button>
+	                       		formaction="/visitante/actualizar-visitante" formmethod="POST">Modificar visitante</button>
 	                       	
 							<button th:if="${accion == 'Eliminar'}" type="submit" class="btn btn-danger"
-					 			formaction="/direccion/eliminar-pais" formmethod="POST">Eliminar país</button>
+					 			formaction="/visitante/eliminar-visitante" formmethod="POST">Eliminar visitante</button>
 				 			
                         </div>
                         
