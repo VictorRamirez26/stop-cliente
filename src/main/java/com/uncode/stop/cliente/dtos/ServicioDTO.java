@@ -1,7 +1,7 @@
 package com.uncode.stop.cliente.dtos;
 
-import java.util.List;
 import java.util.UUID;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,5 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ServicioDTO {
 	private UUID id;
-	private String nombre;
+    private String nombre;
+	private UUID imagenId;
+    //private EmpresaDTO empresa;
 }

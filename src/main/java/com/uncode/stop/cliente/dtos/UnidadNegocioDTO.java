@@ -16,5 +16,5 @@ public class UnidadNegocioDTO {
 	private UUID id;
 	private String nombre;
 	private DireccionDTO direccion = new DireccionDTO();
-	private List<ServicioDTO> servicios; 
+	private ServicioDTO servicio = new ServicioDTO(); 
 }

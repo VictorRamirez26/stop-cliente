@@ -15,11 +15,13 @@ import com.uncode.stop.cliente.dtos.DepartamentoDTO;
 import com.uncode.stop.cliente.dtos.LocalidadDTO;
 import com.uncode.stop.cliente.dtos.PaisDTO;
 import com.uncode.stop.cliente.dtos.ProvinciaDTO;
+import com.uncode.stop.cliente.dtos.ServicioDTO;
 import com.uncode.stop.cliente.dtos.UnidadNegocioDTO;
 import com.uncode.stop.cliente.services.DepartamentoService;
 import com.uncode.stop.cliente.services.LocalidadService;
 import com.uncode.stop.cliente.services.PaisService;
 import com.uncode.stop.cliente.services.ProvinciaService;
+import com.uncode.stop.cliente.services.ServicioService;
 import com.uncode.stop.cliente.services.UnidadNegocioService;
 
 @Controller
@@ -41,6 +43,8 @@ public class UnidadNegocioController {
 	@Autowired
 	private PaisService paisService;
 	
+	@Autowired
+	private ServicioService servicioService; 
 	
 	@GetMapping("/listarUnidadNegocio")
 	public String iniciarUnidades(ModelMap model) {
@@ -55,6 +59,7 @@ public class UnidadNegocioController {
 			ModelMap model) {
 		
 		UnidadNegocioDTO unidad = null;
+		List<ServicioDTO> servicios = servicioService.listar();
 		List<PaisDTO> paises = paisService.listar();
 		List<ProvinciaDTO> provincias;
 		List<DepartamentoDTO> departamentos;
@@ -79,6 +84,7 @@ public class UnidadNegocioController {
 		}
 		
 		model.put("unidad", unidad);
+		model.put("servicios", servicios);
 		model.put("localidades", localidades);
 		model.put("paises", paises);
 		model.put("provincias", provincias);
@@ -91,6 +97,7 @@ public class UnidadNegocioController {
     @PostMapping("/actualizar-unidad")
     public String actualizarUnidad(@RequestParam(value = "id" , required = false) UUID id,
     		@RequestParam(value = "nombre") String nombre,
+    		@RequestParam(value = "servicioId") UUID servicioId,
     		@RequestParam(value = "calle") String calle,
     		@RequestParam(value = "numeracion") String numeracion,
     		@RequestParam(value = "latitud") String latitud,
@@ -100,9 +107,9 @@ public class UnidadNegocioController {
     		ModelMap model) {
     	
         if (id == null) {
-        	unidadNegocioService.crear(id, nombre, calle, numeracion, latitud, longitud, localidadId);
+        	unidadNegocioService.crear(id, nombre, calle, numeracion, latitud, longitud, localidadId, servicioId);
         } else {
-        	unidadNegocioService.modificar(id, nombre, calle, numeracion, latitud, longitud, localidadId);
+        	unidadNegocioService.modificar(id, nombre, calle, numeracion, latitud, longitud, localidadId, servicioId);
         }
         
         return "redirect:/unidadNegocio/listarUnidadNegocio";
