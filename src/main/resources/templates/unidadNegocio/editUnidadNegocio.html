@@ -125,6 +125,21 @@
 						</div>
 						
 						<div class="form-group">
+					            <label>Servicio</label>
+					            <select class="form-control" name="servicioId" th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}" required>
+					                <!-- Opción por defecto solo si es "Crear" -->
+					                <option th:if="${accion == 'Crear'}" value="">Seleccione...</option>
+					
+					                <!-- Opciones de países -->
+					                <option th:each="servicio : ${servicios}"
+					                        th:value="${servicio.id}"
+					                        th:text="${servicio.nombre}"
+					                        th:selected="${servicio.id == unidad.servicio.id}"> 
+					                </option>
+					            </select>
+						</div>
+						
+						<div class="form-group">
 						    <label for="calle">Calle</label> 
 						    <input name="calle"
 						        type="text" id="calle" placeholder="Ingrese el nombre de la calle"

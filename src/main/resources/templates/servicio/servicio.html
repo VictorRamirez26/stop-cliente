@@ -48,12 +48,12 @@
 	                <div class="col-md-12">
 	                    <div class="card">
 	                        <div class="card-header">
-	                            <strong class="card-title">Lista de Unidades de Negocio</strong>
+	                            <strong class="card-title">Lista de Servicios</strong>
 	                        </div>
 	                        
 	                        <div class="card-body">
-	                            <a th:href="@{/unidadNegocio/editar-unidad(accion='Crear')}" class="btn btn-primary">
-	                                <i class="ti-plus"></i>&nbsp; Agregar nueva Unidad de Negocio
+	                            <a th:href="@{/servicio/editar-servicio(accion='Crear')}" class="btn btn-primary">
+	                                <i class="ti-plus"></i>&nbsp; Agregar nuevo servicio
 	                            </a>
 	                        </div>
 	
@@ -62,35 +62,25 @@
 	                                <thead>
 	                                    <tr>
 	                                        <th>Acciones</th>
-	                                        <th>Nombre</th>
 	                                        <th>Servicio</th>
-	                                        <th>Localidad</th>
-	                                        <th>Departamento</th>
-	                                        <th>Provincia</th>
-	                                        <th>Pais</th>
 	                                    </tr>
 	                                </thead>
 									<tbody>
 									    <!-- Iterar sobre la lista de países usando Thymeleaf -->
-									    <tr th:each="unidad : ${unidades}">
+									    <tr th:each="servicio : ${servicios}">
 									        <td>
 									            <div class="dropdown">
 									                <button class="btn btn-secondary dropdown-toggle custom-dropdown" type="button" aria-haspopup="true" aria-expanded="false">
 									                    Opciones
 									                </button>
 									                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									                    <a class="dropdown-item" th:href="@{/unidadNegocio/editar-unidad(accion='Modificar', id=${unidad.id})}">Modificar</a>
-									                    <a class="dropdown-item" th:href="@{/unidadNegocio/editar-unidad(accion='Consultar', id=${unidad.id})}">Consultar</a>
-									                    <a class="dropdown-item" th:href="@{/unidadNegocio/editar-unidad(accion='Eliminar', id=${unidad.id})}">Eliminar</a>
+									                    <a class="dropdown-item" th:href="@{/servicio/editar-servicio(accion='Modificar', id=${servicio.id})}">Modificar</a>
+									                    <a class="dropdown-item" th:href="@{/servicio/editar-servicio(accion='Consultar', id=${servicio.id})}">Consultar</a>
+									                    <a class="dropdown-item" th:href="@{/servicio/editar-servicio(accion='Eliminar', id=${servicio.id})}">Eliminar</a>
 									                </div>
 									            </div>
 									        </td>
-									        <td th:text="${unidad.nombre}">Nombre</td>
-									        <td th:text="${unidad.servicio.nombre}">Servicio</td>
-									        <td th:text="${unidad.direccion.localidad.nombre}">Localidad</td>
-									        <td th:text="${unidad.direccion.localidad.departamento.nombre}">Departamento</td>
-									        <td th:text="${unidad.direccion.localidad.departamento.provincia.nombre}">Provincia</td>
-					        	        	<td th:text="${unidad.direccion.localidad.departamento.provincia.pais.nombre}">País</td>
+									        <td th:text="${servicio.nombre}">Nombre del Servicio</td>
 									    </tr>
 									</tbody>
 	                            </table>
