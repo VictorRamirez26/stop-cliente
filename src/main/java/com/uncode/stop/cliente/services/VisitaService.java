@@ -11,6 +11,7 @@ import com.uncode.stop.cliente.rest.VisitaDAORest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,14 +21,26 @@ public class VisitaService {
     @Autowired
     private VisitaDAORest dao;
 
-    public void crear(TipoMovimiento tipoMovimiento, String observacion,
-                      EstadoMovimiento estadoMovimiento, TipoMovilidad tipoMovilidad,
-                      String descripcionMovilidad, TipoVisita tipoVisita,
-                      VisitanteDTO visitanteDTO, InmuebleDTO inmuebleDTO) {
-        VisitaDTO visita = VisitaDTO.builder().tipoMovimiento(tipoMovimiento).
-                observacion(observacion).estadoMovimiento(estadoMovimiento).
-                tipoMovilidad(tipoMovilidad).descripcionMovilidad(descripcionMovilidad).
-                tipoVisita(tipoVisita).visitante(visitanteDTO).inmueble(inmuebleDTO).build();
+    public void crear(TipoMovimiento tipoMovimiento,
+                      String observacion,
+                      EstadoMovimiento estadoMovimiento,
+                      TipoMovilidad tipoMovilidad,
+                      String descripcionMovilidad,
+                      TipoVisita tipoVisita,
+                      VisitanteDTO visitante,
+                      InmuebleDTO inmueble) {
+
+        VisitaDTO visita = new VisitaDTO();
+        visita.setTipoMovimiento(tipoMovimiento);
+        visita.setFechaMovimiento(LocalDateTime.now()); // Or pass from parameter
+        visita.setObservacion(observacion);
+        visita.setEstadoMovimiento(estadoMovimiento);
+        visita.setTipoMovilidad(tipoMovilidad);
+        visita.setDescripcionMovilidad(descripcionMovilidad);
+        visita.setTipoVisita(tipoVisita);
+        visita.setVisitante(visitante);
+        visita.setInmueble(inmueble);
+
         dao.crear(visita);
     }
 

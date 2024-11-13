@@ -3,17 +3,19 @@ package com.uncode.stop.cliente.rest;
 import com.uncode.stop.cliente.dtos.VisitaDTO;
 import com.uncode.stop.cliente.dtos.VisitanteDTO;
 import com.uncode.stop.cliente.entities.ResponseWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class VisitaDAORest {
 
     @Autowired
@@ -21,9 +23,21 @@ public class VisitaDAORest {
 
     private final String baseUri = "http://localhost:9000/visita";
 
-    public void crear(VisitaDTO visita) {
-        String uri = baseUri;
-        restTemplate.postForEntity(uri, visita, VisitaDTO.class);
+    public VisitaDTO crear(VisitaDTO visita) {
+        try {
+            log.debug("Sending request to create visita: {}", visita);
+            ResponseEntity<VisitaDTO> response = restTemplate.postForEntity(
+                    baseUri,
+                    visita,
+                    VisitaDTO.class
+            );
+            log.debug("Received response: {}", response.getBody());
+            return response.getBody();
+        } catch (HttpClientErrorException e) {
+            log.error("Error creating visita. Request body: {}. Response: {}",
+                    visita, e.getResponseBodyAsString());
+            throw e;
+        }
     }
 
     public void modificar(VisitaDTO visita) {
