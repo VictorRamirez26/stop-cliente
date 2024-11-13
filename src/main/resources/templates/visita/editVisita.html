@@ -103,9 +103,15 @@
 
                             <div class="form-group">
                                 <label for="fechaMovimiento">Fecha de Movimiento</label>
-                                <input type="date" id="fechaMovimiento" name="fechaMovimiento" class="form-control"
-                                       th:field="*{fechaMovimiento}" th:disabled="${accion == 'Eliminar' || accion == 'Consultar'}" />
+                                <input type="datetime-local"
+                                       id="fechaMovimiento"
+                                       name="fechaMovimiento"
+                                       class="form-control"
+                                       th:field="*{fechaMovimiento}"
+                                       th:value="${#temporals.format(fechaMovimiento, 'yyyy-MM-dd''T''HH:mm')}"
+                                       th:disabled="${accion == 'Eliminar' || accion == 'Consultar'}" />
                             </div>
+
 
                             <div class="form-group">
                                 <label for="observacion">Observación</label>
@@ -154,6 +160,31 @@
                                     </option>
                                 </select>
                             </div>
+
+                            <div class="form-group">
+                                <label for="visitante">Visitante</label>
+                                <select id="visitante" name="visitante" class="form-control" th:field="*{visitante}"
+                                        th:disabled="${accion == 'Eliminar' || accion == 'Consultar'}">
+                                    <option value="">Seleccione un visitante</option>
+                                    <option th:each="visitante : ${visitantes}"
+                                            th:value="${visitante.id}"
+                                            th:text="${visitante.nombre} + ' ' + ${visitante.apellido} + ' - DNI: ' + ${visitante.numeroDeDocumento} " >
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inmueble">Inmueble</label>
+                                <select id="inmuebles" name="visitante" class="form-control" th:field="*{inmueble}"
+                                        th:disabled="${accion == 'Eliminar' || accion == 'Consultar'}">
+                                    <option value="">Seleccione un visitante</option>
+                                    <option th:each="inmueble : ${inmuebles}"
+                                            th:value="${inmueble.id}"
+                                            th:text="${inmueble.numeracion} + ' - Piso ' + ${inmueble.piso} + ' - Departamento ' + ${inmueble.depto}">
+                                    </option>
+                                </select>
+                            </div>
+
 
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-dark"
