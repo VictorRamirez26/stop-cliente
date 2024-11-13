@@ -116,6 +116,15 @@
 						<div class="form-group">
 						    <input type="hidden" name="id" th:value="${unidad.id}" />
 						
+						    <label for="nombre">Nombre</label> 
+						    <input name="nombre"
+						        type="text" id="nombre" placeholder="Ingrese el nombre de la unidad"
+						        th:value="${unidad.nombre}" class="form-control"
+						        th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}"
+						        required>
+						</div>
+						
+						<div class="form-group">
 						    <label for="calle">Calle</label> 
 						    <input name="calle"
 						        type="text" id="calle" placeholder="Ingrese el nombre de la calle"

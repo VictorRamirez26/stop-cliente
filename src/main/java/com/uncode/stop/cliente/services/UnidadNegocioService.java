@@ -27,7 +27,6 @@ public class UnidadNegocioService {
 				.latitud(latitud).longitud(longitud).localidad(localidad).build();
 
 		UnidadNegocioDTO unidad = UnidadNegocioDTO.builder().id(id).nombre(nombre).direccion(direccion).build();
-		
 		dao.crear(unidad);
 	}
 	

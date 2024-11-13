@@ -12,9 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UnidadNegocioDTO {
+public class ServicioDTO {
 	private UUID id;
 	private String nombre;
-	private DireccionDTO direccion = new DireccionDTO();
-	private List<ServicioDTO> servicios; 
 }

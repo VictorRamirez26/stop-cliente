@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -86,27 +87,31 @@ public class UnidadNegocioController {
 		return "/unidadNegocio/editUnidadNegocio.html";
 	}
 	
-	/*
-    @PostMapping("/actualizar-localidad")
-    public String actualizarLocalidad(@RequestParam(value = "id" , required = false) UUID id,
+
+    @PostMapping("/actualizar-unidad")
+    public String actualizarUnidad(@RequestParam(value = "id" , required = false) UUID id,
     		@RequestParam(value = "nombre") String nombre,
-    		@RequestParam(value = "codigoPostal") String codigoPostal,
-    		@RequestParam(value = "departamentoId") UUID departamentoId,
+    		@RequestParam(value = "calle") String calle,
+    		@RequestParam(value = "numeracion") String numeracion,
+    		@RequestParam(value = "latitud") String latitud,
+    		@RequestParam(value = "longitud") String longitud,
+    		@RequestParam(value = "localidadId") UUID localidadId,
     		@RequestParam(value = "accion" , defaultValue = "Crear") String accion, 
     		ModelMap model) {
     	
         if (id == null) {
-        	localidadService.crear(id, nombre, codigoPostal, departamentoId);
+        	unidadNegocioService.crear(id, nombre, calle, numeracion, latitud, longitud, localidadId);
         } else {
-        	localidadService.modificar(id, nombre, codigoPostal, departamentoId);
+        	unidadNegocioService.modificar(id, nombre, calle, numeracion, latitud, longitud, localidadId);
         }
-        return "redirect:/localidad/listarLocalidades";
+        
+        return "redirect:/unidadNegocio/listarUnidadNegocio";
     }
 
-    @PostMapping("/eliminar-localidad")
-    public String eliminarLocalidad(@RequestParam("id") UUID id) {
-    	localidadService.eliminar(id);
-        return "redirect:/localidad/listarLocalidades";
+    @PostMapping("/eliminar-unidad")
+    public String eliminarUnidad(@RequestParam("id") UUID id) {
+    	unidadNegocioService.eliminar(id);
+    	return "redirect:/unidadNegocio/listarUnidadNegocio";
     }
-    */
+
 }
