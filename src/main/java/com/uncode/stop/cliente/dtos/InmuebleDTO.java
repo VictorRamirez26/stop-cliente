@@ -19,6 +19,6 @@ public class InmuebleDTO {
     private String piso;
     private String depto;
     private EstadoInmueble estadoInmueble;
-    private UnidadDeNegocioDTO unidadDeNegocio;
+    private UnidadNegocioDTO unidadDeNegocio;
 
 }

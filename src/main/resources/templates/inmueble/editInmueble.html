@@ -77,55 +77,77 @@
         <div class="content">
         
             <!-- FORM -->
-            <div class="col-lg-10"> <!-- Aca se puede ajustar el ancho del formulario -->
-            
+            <div class="col-lg-10">
                 <div class="card">
-                    <div class="card-header"><strong th:text="${accion}"></strong><strong> Visitante</strong></div>
+                    <div class="card-header"><strong th:text="${accion}"></strong><strong> Inmueble</strong></div>
 
-                    <form>
+                    <form th:object="${inmueble}" method="POST">
                         <div class="card-body card-block">
-                            <!-- Campo oculto para el ID del visitante -->
-                            <input type="hidden" name="id" th:value="${visitante.id}">
+                            <!-- Campo oculto para el ID del inmueble -->
+                            <input type="hidden" th:field="*{id}" />
                             <input type="hidden" name="accion" th:value="${accion}">
 
                             <div class="form-group">
-                                <label for="nombre">Nombre</label>
-                                <input name="nombre" type="text" id="nombre" placeholder="Ingrese el nombre"
-                                       class="form-control" th:value="${visitante.nombre}"
+                                <label for="numeracion">Numeracion</label>
+                                <input name="numeracion" type="text" id="numeracion" placeholder="Ingrese la numeracion"
+                                       class="form-control" th:value="${inmueble.numeracion}"
                                        th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
                             </div>
 
                             <div class="form-group">
-                                <label for="apellido">Apellido</label>
-                                <input name="apellido" type="text" id="apellido" placeholder="Ingrese el apellido"
-                                       class="form-control" th:value="${visitante.apellido}"
+                                <label for="piso">Piso</label>
+                                <input name="piso" type="text" id="piso" placeholder="Ingrese el piso"
+                                       class="form-control" th:value="${inmueble.piso}"
                                        th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
                             </div>
 
                             <div class="form-group">
-                                <label for="numeroDeDocumento">DNI</label>
-                                <input name="numeroDeDocumento" type="text" id="numeroDeDocumento" placeholder="Ingrese el DNI"
-                                       class="form-control" th:value="${visitante.numeroDeDocumento}"
+                                <label for="depto">Departamento</label>
+                                <input name="depto" type="text" id="depto" placeholder="Ingrese el departamento"
+                                       class="form-control" th:value="${inmueble.depto}"
                                        th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}">
                             </div>
 
-                            <button type="submit" class="btn btn-dark" formaction="/visitante/listarVisitantes" formmethod="GET">Volver</button>
+                            <div class="form-group">
+                                <label for="estadoInmueble">Estado de inmueble</label>
+                                <select class="form-control" th:field="*{estadoInmueble}"
+                                        th:disabled="${accion == 'Eliminar' || accion == 'Consultar'}">
+                                    <option value="">Seleccione un tipo</option>
+                                    <option th:each="estado : ${estadosInmueble}"
+                                            th:value="${estado}"
+                                            th:text="${estado.name()}"
+                                            th:selected="${estado == inmueble.estadoInmueble}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="unidadDeNegocio">Unidad de negocio</label>
+                                <select id="unidadDeNegocio" name="unidadDeNegocio" class="form-control"
+                                        th:disabled="${accion == 'Eliminar' || accion == 'Consultar'}">
+                                    <option value="">Seleccione la unidad de negocio</option>
+                                    <option th:each="unidadDeNegocio : ${unidadesDeNegocio}"
+                                            th:value="${unidadDeNegocio.id}"
+                                            th:text="${unidadDeNegocio.nombre}"
+                                            th:selected="${unidadDeNegocio.id == inmueble.unidadDeNegocio?.id}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-dark" formaction="/inmueble/listarInmuebles" formmethod="GET">Volver</button>
 
                             <button th:if="${accion == 'Crear'}" type="submit" class="btn btn-primary"
-                                    formaction="/visitante/actualizar-visitante" formmethod="POST">Crear visitante</button>
+                                    formaction="/inmueble/actualizar-inmueble" formmethod="POST">Crear inmueble</button>
 
                             <button th:if="${accion == 'Modificar'}" type="submit" class="btn btn-primary"
-                                    formaction="/visitante/actualizar-visitante" formmethod="POST">Modificar visitante</button>
+                                    formaction="/inmueble/actualizar-inmueble" formmethod="POST">Modificar inmueble</button>
 
                             <button th:if="${accion == 'Eliminar'}" type="submit" class="btn btn-danger"
-                                    formaction="/visitante/eliminar-visitante" formmethod="POST">Eliminar visitante</button>
+                                    formaction="/inmueble/eliminar-inmueble" formmethod="POST">Eliminar inmueble</button>
                         </div>
                     </form>
-
-
                 </div>
-
-            </div><!-- .col-lg-6 -->
+            </div>
             <!-- END FORM -->
             
         </div><!-- .content -->

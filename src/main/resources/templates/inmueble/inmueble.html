@@ -49,12 +49,12 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Lista de Visitantes</strong>
+                                <strong class="card-title">Lista de Inmuebles</strong>
                             </div>
                             
 							<div class="card-body">
-							    <a th:href="@{/visitante/editar-visitante(accion='Crear')}" class="btn btn-primary">
-							        <i class="ti-plus"></i>&nbsp; Agregar nuevo visitante
+							    <a th:href="@{/inmueble/editar-inmueble(accion='Crear')}" class="btn btn-primary">
+							        <i class="ti-plus"></i>&nbsp; Agregar nuevo inmueble
 							    </a>
 							</div>
 
@@ -63,30 +63,34 @@
                                     <thead>
                                         <tr>
                                             <th>Acciones</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>DNI</th>
+                                            <th>Numeración</th>
+                                            <th>Piso</th>
+                                            <th>Departamento</th>
+                                            <th>Estado</th>
+                                            <th>Unidad de negocio</th>
                                         </tr>
                                     </thead>
 									<tbody>
 
-									    <tr th:each="visitante: ${visitantes}">
+									    <tr th:each="inmueble: ${inmuebles}">
 									        <td>
 												<div class="dropdown">
 												    <button class="btn btn-secondary dropdown-toggle custom-dropdown" type="button" aria-haspopup="true" aria-expanded="false">
 												        Opciones
 												    </button>
 												    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" th:href="@{/visitante/editar-visitante(accion='Modificar', id=${visitante.id})}">Modificar</a>
-                                                        <a class="dropdown-item" th:href="@{/visitante/editar-visitante(accion='Consultar', id=${visitante.id})}">Consultar</a>
-                                                        <a class="dropdown-item" th:href="@{/visitante/editar-visitante(accion='Eliminar', id=${visitante.id})}">Eliminar</a>
+                                                        <a class="dropdown-item" th:href="@{/inmueble/editar-inmueble(accion='Modificar', id=${inmueble.id})}">Modificar</a>
+                                                        <a class="dropdown-item" th:href="@{/inmueble/editar-inmueble(accion='Consultar', id=${inmueble.id})}">Consultar</a>
+                                                        <a class="dropdown-item" th:href="@{/inmueble/editar-inmueble(accion='Eliminar', id=${inmueble.id})}">Eliminar</a>
 
                                                     </div>
 												</div>
 									        </td>
-                                            <td th:text="${visitante.nombre}">Nombre del Visitante</td>
-                                            <td th:text="${visitante.apellido}">Apellido del Visitante</td>
-                                            <td th:text="${visitante.numeroDeDocumento}">Numero de documento del Visitante</td>
+                                            <td th:text="${inmueble.numeracion}">Numeración del inmueble</td>
+                                            <td th:text="${inmueble.piso}">Piso del inmueble</td>
+                                            <td th:text="${inmueble.depto}">Departamento del inmueble</td>
+                                            <td th:text="${inmueble.estadoInmueble}">Estado del inmueble</td>
+                                            <td th:text="${inmueble.unidadDeNegocio.nombre}">Unidad de negocio del inmueble</td>
 									    </tr>
 									    
 									</tbody>
