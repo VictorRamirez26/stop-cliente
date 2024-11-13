@@ -51,4 +51,8 @@ public class LocalidadService {
 	public List<LocalidadDTO> listar() {
 		return dao.listar();
 	}
+	
+	public List<LocalidadDTO> listarLocalidadesPorDepartamento(UUID id) {
+		return dao.listarLocalidadesPorDepartamento(id);
+	}
 }
