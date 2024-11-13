@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.uncode.stop.cliente.dtos.DepartamentoDTO;
 import com.uncode.stop.cliente.dtos.LocalidadDTO;
 import com.uncode.stop.cliente.entities.ResponseWrapper;
 
@@ -59,5 +60,18 @@ public class LocalidadDAORest {
 		// Obtén la lista de países desde el "content" del ResponseWrapper
 		List<LocalidadDTO> listaLocalidades = response.getBody().getContent();
 		return listaLocalidades;
+	}
+	
+	public List<LocalidadDTO> listarLocalidadesPorDepartamento(UUID localidadesId) {
+	    String uri = "http://localhost:9000/localidades/listarLocalidadesPorDepartamento/" + localidadesId;
+
+	    ResponseEntity<List<LocalidadDTO>> response = restTemplate.exchange(
+	            uri, 
+	            HttpMethod.GET, 
+	            null, 
+	            new ParameterizedTypeReference<List<LocalidadDTO>>() {}
+	    );
+
+	    return response.getBody();
 	}
 }

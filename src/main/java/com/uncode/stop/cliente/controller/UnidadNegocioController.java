@@ -4,12 +4,9 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,14 +14,19 @@ import com.uncode.stop.cliente.dtos.DepartamentoDTO;
 import com.uncode.stop.cliente.dtos.LocalidadDTO;
 import com.uncode.stop.cliente.dtos.PaisDTO;
 import com.uncode.stop.cliente.dtos.ProvinciaDTO;
+import com.uncode.stop.cliente.dtos.UnidadNegocioDTO;
 import com.uncode.stop.cliente.services.DepartamentoService;
 import com.uncode.stop.cliente.services.LocalidadService;
 import com.uncode.stop.cliente.services.PaisService;
 import com.uncode.stop.cliente.services.ProvinciaService;
+import com.uncode.stop.cliente.services.UnidadNegocioService;
 
 @Controller
-@RequestMapping("/localidad")
-public class LocalidadController {
+@RequestMapping("/unidadNegocio")
+public class UnidadNegocioController {
+	
+	@Autowired
+	private UnidadNegocioService unidadNegocioService;
 	
 	@Autowired
 	private LocalidadService localidadService;
@@ -39,43 +41,52 @@ public class LocalidadController {
 	private PaisService paisService;
 	
 	
-	@GetMapping("/listarLocalidades")
-	public String iniciarLocalidades(ModelMap model) {
-		List<LocalidadDTO> localidades = localidadService.listar();
-		model.put("localidades", localidades);
-		return "/localidad/localidad.html";
+	@GetMapping("/listarUnidadNegocio")
+	public String iniciarUnidades(ModelMap model) {
+		List<UnidadNegocioDTO> unidades = unidadNegocioService.listar();
+		model.put("unidades", unidades);
+		return "/unidadNegocio/unidadNegocio.html";
 	}
 	
-	@GetMapping("/editar-localidad")
-	public String editDepartamento(@RequestParam(value = "id", required = false) UUID id,
-			@RequestParam(value = "accion") String accion , 
+	@GetMapping("/editar-unidad")
+	public String editUnidad(@RequestParam(value = "id", required = false) UUID id,
+			@RequestParam(value = "accion" , required = false) String accion , 
 			ModelMap model) {
 		
-		LocalidadDTO localidad = null;
+		UnidadNegocioDTO unidad = null;
 		List<PaisDTO> paises = paisService.listar();
-		
 		List<ProvinciaDTO> provincias;
 		List<DepartamentoDTO> departamentos;
+		List<LocalidadDTO> localidades;
 		
 		if (id == null) {
-			localidad = new LocalidadDTO();
+			unidad = new UnidadNegocioDTO();
 			provincias = provinciaService.listar();
 			departamentos = departamentoService.listar();
+			localidades = localidadService.listar();
 			
 		}else {
-			localidad = localidadService.buscar(id);
-			provincias = provinciaService.listarProvinciasPorPais(localidad.getDepartamento().getProvincia().getPais().getId());
-			departamentos = departamentoService.listarDepartamentosPorProvincia(localidad.getDepartamento().getProvincia().getId());
+			unidad = unidadNegocioService.buscar(id);
+			provincias = provinciaService.listarProvinciasPorPais(unidad.getDireccion().getLocalidad().getDepartamento().
+					getProvincia().getPais().getId());
+			
+			departamentos = departamentoService.listarDepartamentosPorProvincia(unidad.getDireccion().getLocalidad().
+					getDepartamento().getProvincia().getId());
+			
+			localidades = localidadService.listarLocalidadesPorDepartamento(unidad.getDireccion().getLocalidad().getDepartamento().getId());
 			
 		}
-		model.put("localidad", localidad);
+		
+		model.put("unidad", unidad);
+		model.put("localidades", localidades);
 		model.put("paises", paises);
 		model.put("provincias", provincias);
 		model.put("departamentos", departamentos);
 		model.put("accion", accion);
-		return "/localidad/editLocalidad.html";
+		return "/unidadNegocio/editUnidadNegocio.html";
 	}
 	
+	/*
     @PostMapping("/actualizar-localidad")
     public String actualizarLocalidad(@RequestParam(value = "id" , required = false) UUID id,
     		@RequestParam(value = "nombre") String nombre,
@@ -97,11 +108,5 @@ public class LocalidadController {
     	localidadService.eliminar(id);
         return "redirect:/localidad/listarLocalidades";
     }
-    
-    @GetMapping("/listarLocalidadesPorDepartamento/{id}")
-    public ResponseEntity<List<LocalidadDTO>> listarLocalidades(@PathVariable("id") UUID idDepartamento) {
-        List<LocalidadDTO> localidades = localidadService.listarLocalidadesPorDepartamento(idDepartamento);
-        return ResponseEntity.ok(localidades);  // Devolver departamentos en formato JSON
-    }
-    
+    */
 }
