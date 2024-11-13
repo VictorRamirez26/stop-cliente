@@ -9,6 +9,7 @@ import com.uncode.stop.cliente.enums.TipoMovimiento;
 import com.uncode.stop.cliente.enums.TipoVisita;
 import com.uncode.stop.cliente.rest.VisitaDAORest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -28,11 +29,12 @@ public class VisitaService {
                       String descripcionMovilidad,
                       TipoVisita tipoVisita,
                       VisitanteDTO visitante,
-                      InmuebleDTO inmueble) {
+                      InmuebleDTO inmueble,
+                      LocalDateTime fechaMovimiento) {
 
         VisitaDTO visita = new VisitaDTO();
         visita.setTipoMovimiento(tipoMovimiento);
-        visita.setFechaMovimiento(LocalDateTime.now()); // Or pass from parameter
+        visita.setFechaMovimiento(fechaMovimiento); // Or pass from parameter
         visita.setObservacion(observacion);
         visita.setEstadoMovimiento(estadoMovimiento);
         visita.setTipoMovilidad(tipoMovilidad);
@@ -47,11 +49,12 @@ public class VisitaService {
     public void modificar(UUID id, TipoMovimiento tipoMovimiento, String observacion,
                           EstadoMovimiento estadoMovimiento, TipoMovilidad tipoMovilidad,
                           String descripcionMovilidad, TipoVisita tipoVisita,
-                          VisitanteDTO visitanteDTO, InmuebleDTO inmuebleDTO) {
+                          VisitanteDTO visitanteDTO, InmuebleDTO inmuebleDTO,
+                          LocalDateTime fechaMovimiento) {
         VisitaDTO visita = VisitaDTO.builder().id(id).tipoMovimiento(tipoMovimiento).
                 observacion(observacion).estadoMovimiento(estadoMovimiento).
                 tipoMovilidad(tipoMovilidad).descripcionMovilidad(descripcionMovilidad).
-                tipoVisita(tipoVisita).visitante(visitanteDTO).inmueble(inmuebleDTO).build();
+                tipoVisita(tipoVisita).visitante(visitanteDTO).inmueble(inmuebleDTO).fechaMovimiento(fechaMovimiento).build();
         dao.modificar(visita);
     }
 

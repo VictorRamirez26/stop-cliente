@@ -150,7 +150,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="tipoVisita">Tipo de visita</label>
+                                <label for="tipoVisita">Estado de Movimiento</label>
                                 <select class="form-control" th:field="*{tipoVisita}"
                                         th:disabled="${accion == 'Eliminar' || accion == 'Consultar'}">
                                     <option value="">Seleccione un tipo</option>
@@ -163,24 +163,24 @@
 
                             <div class="form-group">
                                 <label for="visitante">Visitante</label>
-                                <select id="visitante" name="visitante" class="form-control" th:field="*{visitante}"
-                                        th:disabled="${accion == 'Eliminar' || accion == 'Consultar'}">
+                                <select id="visitante" name="visitante" class="form-control">
                                     <option value="">Seleccione un visitante</option>
-                                    <option th:each="visitante : ${visitantes}"
-                                            th:value="${visitante.id}"
-                                            th:text="${visitante.nombre} + ' ' + ${visitante.apellido} + ' - DNI: ' + ${visitante.numeroDeDocumento} " >
+                                    <option th:each="visitanteOp : ${visitantes}"
+                                            th:value="${visitanteOp.id}"
+                                            th:selected="${visita.visitante != null && visitanteOp.id == visita.visitante.id}"
+                                            th:text="${visitanteOp.nombre + ' ' + visitanteOp.apellido + ' - DNI: ' + visitanteOp.numeroDeDocumento}">
                                     </option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="inmueble">Inmueble</label>
-                                <select id="inmuebles" name="visitante" class="form-control" th:field="*{inmueble}"
-                                        th:disabled="${accion == 'Eliminar' || accion == 'Consultar'}">
-                                    <option value="">Seleccione un visitante</option>
+                                <select id="inmueble" name="inmueble" class="form-control">
+                                    <option value="">Seleccione un inmueble</option>
                                     <option th:each="inmueble : ${inmuebles}"
                                             th:value="${inmueble.id}"
-                                            th:text="${inmueble.numeracion} + ' - Piso ' + ${inmueble.piso} + ' - Departamento ' + ${inmueble.depto}">
+                                            th:selected="${visita.inmueble != null && inmueble.id == visita.inmueble.id}"
+                                            th:text="${inmueble.numeracion + ' - Piso ' + inmueble.piso + ' - Departamento ' + inmueble.depto}">
                                     </option>
                                 </select>
                             </div>
@@ -188,20 +188,20 @@
 
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-dark"
-                                        formaction="/visitante/listarVisitantes"
+                                        formaction="/visita/listarVisitas"
                                         formmethod="GET">Volver</button>
 
                                 <button th:if="${accion == 'Crear'}" type="submit"
                                         class="btn btn-primary"
-                                        formaction="/visita/actualizar-visita">Crear visitante</button>
+                                        formaction="/visita/actualizar-visita">Crear Visita</button>
 
                                 <button th:if="${accion == 'Modificar'}" type="submit"
                                         class="btn btn-primary"
-                                        formaction="/visita/actualizar-visita">Modificar visitante</button>
+                                        formaction="/visita/actualizar-visita">Modificar Visita</button>
 
                                 <button th:if="${accion == 'Eliminar'}" type="submit"
                                         class="btn btn-danger"
-                                        formaction="/visita/eliminar-visita">Eliminar visitante</button>
+                                        formaction="/visita/eliminar-visita">Eliminar Visita</button>
                             </div>
                         </div>
                     </form>

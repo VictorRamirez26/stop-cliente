@@ -64,7 +64,8 @@ public class VisitaController {
     @PostMapping("/actualizar-visita")
     public String actualizarVisita(@RequestParam(value = "id", required = false) UUID id,
                                    @RequestParam("tipoMovimiento") TipoMovimiento tipoMovimiento,
-                                   @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") // Add this annotation@RequestParam("fechaMovimiento") LocalDateTime fechaMovimiento,
+                                   @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+                                   @RequestParam("fechaMovimiento") LocalDateTime fechaMovimiento,
                                    @RequestParam("observacion") String observacion,
                                    @RequestParam("estadoMovimiento") EstadoMovimiento estadoMovimiento,
                                    @RequestParam("tipoMovilidad") TipoMovilidad tipoMovilidad,
@@ -79,9 +80,9 @@ public class VisitaController {
         InmuebleDTO inmueble = inmuebleService.buscar(inmuebleId);
 
         if(id == null) {
-            visitaService.crear(tipoMovimiento, observacion, estadoMovimiento, tipoMovilidad, descripcionMovilidad, tipoVisita, visitante, inmueble);
+            visitaService.crear(tipoMovimiento, observacion, estadoMovimiento, tipoMovilidad, descripcionMovilidad, tipoVisita, visitante, inmueble, fechaMovimiento);
         } else {
-            visitaService.modificar(id, tipoMovimiento, observacion, estadoMovimiento, tipoMovilidad, descripcionMovilidad, tipoVisita, visitante, inmueble);
+            visitaService.modificar(id, tipoMovimiento, observacion, estadoMovimiento, tipoMovilidad, descripcionMovilidad, tipoVisita, visitante, inmueble, fechaMovimiento);
         }
         return "redirect:/visita/listarVisitas";
     }
