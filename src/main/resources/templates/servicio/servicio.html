@@ -41,56 +41,56 @@
 	    <div th:replace="~{fragments/header :: header}"></div>
 	
 	    <div class="content">
-	        
+
 	        <!-- TABLE -->
-	        <div class="animated fadeIn">
-	            <div class="row">
-	                <div class="col-md-12">
-	                    <div class="card">
-	                        <div class="card-header">
-	                            <strong class="card-title">Lista de Servicios</strong>
-	                        </div>
-	                        
-	                        <div class="card-body">
-	                            <a th:href="@{/servicio/editar-servicio(accion='Crear')}" class="btn btn-primary">
-	                                <i class="ti-plus"></i>&nbsp; Agregar nuevo servicio
-	                            </a>
-	                        </div>
-	
-	                        <div class="card-body">
-	                            <table id="bootstrap-data-table" class="table table-striped table-bordered">
-	                                <thead>
-	                                    <tr>
-	                                        <th>Acciones</th>
-	                                        <th>Servicio</th>
-	                                    </tr>
-	                                </thead>
+			<div class="animated fadeIn">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								<strong class="card-title">Lista de Servicios</strong>
+							</div>
+
+							<div class="card-body">
+								<a th:href="@{/servicio/editar-servicio(accion='Crear')}" class="btn btn-primary">
+									<i class="ti-plus"></i>&nbsp; Agregar nuevo servicio
+								</a>
+							</div>
+
+							<div class="card-body">
+								<table id="bootstrap-data-table" class="table table-striped table-bordered">
+									<thead>
+									<tr>
+										<th>Acciones</th>
+										<th>Servicio</th>
+									</tr>
+									</thead>
 									<tbody>
-									    <!-- Iterar sobre la lista de países usando Thymeleaf -->
-									    <tr th:each="servicio : ${servicios}">
-									        <td>
-									            <div class="dropdown">
-									                <button class="btn btn-secondary dropdown-toggle custom-dropdown" type="button" aria-haspopup="true" aria-expanded="false">
-									                    Opciones
-									                </button>
-									                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									                    <a class="dropdown-item" th:href="@{/servicio/editar-servicio(accion='Modificar', id=${servicio.id})}">Modificar</a>
-									                    <a class="dropdown-item" th:href="@{/servicio/editar-servicio(accion='Consultar', id=${servicio.id})}">Consultar</a>
-									                    <a class="dropdown-item" th:href="@{/servicio/editar-servicio(accion='Eliminar', id=${servicio.id})}">Eliminar</a>
-									                </div>
-									            </div>
-									        </td>
-									        <td th:text="${servicio.nombre}">Nombre del Servicio</td>
-									    </tr>
+									<!-- Iterar sobre la lista de servicios usando Thymeleaf -->
+									<tr th:each="servicio : ${servicios}">
+										<td>
+											<div class="dropdown">
+												<button class="btn btn-secondary dropdown-toggle custom-dropdown" type="button" aria-haspopup="true" aria-expanded="false">
+													Opciones
+												</button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													<a class="dropdown-item" th:href="@{/servicio/editar-servicio(accion='Modificar', id=${servicio.id})}">Modificar</a>
+													<a class="dropdown-item" th:href="@{/servicio/editar-servicio(accion='Consultar', id=${servicio.id})}">Consultar</a>
+													<a class="dropdown-item" th:href="@{/servicio/editar-servicio(accion='Eliminar', id=${servicio.id})}">Eliminar</a>
+												</div>
+											</div>
+										</td>
+										<td th:text="${servicio.nombre}">Nombre del Servicio</td>
+									</tr>
 									</tbody>
-	                            </table>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div><!-- .animated -->
-	        <!-- END TABLE -->
-	
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- .animated -->
+			<!-- END TABLE -->
+
 	    </div><!-- .content -->
 	
 	</div><!-- #right-panel -->
