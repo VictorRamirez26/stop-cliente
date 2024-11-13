@@ -16,7 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class VisitaDAO {
+public class VisitaDTO {
 
     private UUID id;
     private TipoMovimiento tipoMovimiento;
@@ -26,23 +26,6 @@ public class VisitaDAO {
     private TipoMovilidad tipoMovilidad;
     private String descripcionMovilidad;
     private TipoVisita tipoVisita;
+    private InmuebleDTO inmueble;
     private VisitanteDTO visitante;
-
-
-/*    {
-        "tipoMovimiento": "SALIDA",
-            "fechaMovimiento": "2024-11-10T15:30:00",
-            "observacion": "Ingreso de visitante al edificio",
-            "estadoMovimiento": "REALIZADO",
-            "tipoMovilidad": "AUTOMOVIL",
-            "descripcionMovilidad": "Ingreso en camioneta",
-            "tipoVisita": "FAMILIAR",
-            "visitante": {
-        "id": "4ef855a6-a07d-4f5b-82e2-1c92f1239960"
-    },
-        "inmueble": {
-        "id": "4c843579-b97a-4f9b-be16-98287f714bf7"
-    }
-    }
-*/
 }

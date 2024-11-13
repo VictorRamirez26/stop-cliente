@@ -67,3 +67,33 @@ public class VisitanteController {
 
 
 }
+
+/*
+{
+            "id": "b1cbbedf-7771-4b59-8d82-88856f081ae3",
+            "tipoMovimiento": "SALIDA",
+            "fechaMovimiento": "2024-11-10T15:30:00",
+            "observacion": "Ingreso de visitante al edificio",
+            "estadoMovimiento": "REALIZADO",
+            "tipoMovilidad": "AUTOMOVIL",
+            "descripcionMovilidad": "Ingreso en camioneta",
+            "tipoVisita": "FAMILIAR",
+            "visitante": {
+                "id": "da6ef235-e51a-454d-89d2-1124ecc38c0c",
+                "nombre": "Victor",
+                "apellido": "Ramirez",
+                "numeroDeDocumento": "40000000"
+            },
+            "inmueble": {
+                "id": "51adb003-cc08-4827-94d4-7770650b0b77",
+                "numeracion": "2",
+                "piso": "2",
+                "depto": "B",
+                "estadoInmueble": "HABITADO",
+                "unidadDeNegocio": {
+                    "id": "f5e32e10-44b3-4708-b319-c75a4c7cb943",
+                    "nombre": "UNCuyo"
+                }
+            }
+        }
+ */
