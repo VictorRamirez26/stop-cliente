@@ -65,7 +65,10 @@
 								            <th>Acciones</th>
 								            <th>Nombre</th>
 								            <th>Apellido</th>
-								            <th>Inmueble</th>
+								            <th>Barrio</th>
+								            <th>Numeración</th>
+								            <th>Piso</th>
+								            <th>Depto</th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -82,12 +85,16 @@
 								                        <a class="dropdown-item" th:href="@{/habitante/editar-habitante(accion='Eliminar', id=${habitante.id})}">Eliminar</a>
 								                        <!-- Condicional para Crear o Modificar Usuario -->
 								                        <a class="dropdown-item" th:href="@{/habitante/editar-usuario(accion='CrearUsuario', id=${habitante.id})}">Crear Usuario</a>
+								                        <a class="dropdown-item" th:href="@{/habitante/editar-usuario(accion='ModificarUsuario', id=${habitante.id})}">Modificar Usuario</a>
 								                    </div>
 								                </div>
 								            </td>
 								            <td th:text="${habitante.nombre}">Nombre</td>
 								            <td th:text="${habitante.apellido}">Apellido</td>
-								            <td th:text="${habitante.inmueble.numeracion + ' ' + habitante.inmueble.departamento}">Inmueble</td>
+								            <td th:text="${habitante.inmueble.unidadDeNegocio.nombre}">Barrio</td>
+								            <td th:text="${habitante.inmueble.numeracion}">Numeración</td>
+								            <td th:text="${habitante.inmueble.piso}">Piso</td>
+								            <td th:text="${habitante.inmueble.depto}">Departamento</td>
 								        </tr>
 								    </tbody>
 								</table>

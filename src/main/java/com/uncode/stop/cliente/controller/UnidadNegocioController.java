@@ -4,20 +4,24 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uncode.stop.cliente.dtos.DepartamentoDTO;
+import com.uncode.stop.cliente.dtos.InmuebleDTO;
 import com.uncode.stop.cliente.dtos.LocalidadDTO;
 import com.uncode.stop.cliente.dtos.PaisDTO;
 import com.uncode.stop.cliente.dtos.ProvinciaDTO;
 import com.uncode.stop.cliente.dtos.ServicioDTO;
 import com.uncode.stop.cliente.dtos.UnidadNegocioDTO;
 import com.uncode.stop.cliente.services.DepartamentoService;
+import com.uncode.stop.cliente.services.InmuebleService;
 import com.uncode.stop.cliente.services.LocalidadService;
 import com.uncode.stop.cliente.services.PaisService;
 import com.uncode.stop.cliente.services.ProvinciaService;
@@ -120,5 +124,5 @@ public class UnidadNegocioController {
     	unidadNegocioService.eliminar(id);
     	return "redirect:/unidadNegocio/listarUnidadNegocio";
     }
-
+    
 }

@@ -42,4 +42,9 @@ public class InmuebleService {
     public List<InmuebleDTO> listar() {
         return dao.listar();
     }
+    
+    public List<InmuebleDTO> listarInmueblesPorBarrio(UUID barrioId){
+    	return dao.listarInmueblesPorBarrio(barrioId);
+    }
+    
 }

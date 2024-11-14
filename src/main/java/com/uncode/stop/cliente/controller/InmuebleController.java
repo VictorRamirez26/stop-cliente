@@ -6,10 +6,12 @@ import com.uncode.stop.cliente.enums.EstadoInmueble;
 import com.uncode.stop.cliente.services.InmuebleService;
 import com.uncode.stop.cliente.services.UnidadNegocioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,6 +73,12 @@ public class InmuebleController {
     public String eliminarInmueble(@RequestParam("id") UUID id) {
         inmuebleService.eliminar(id);
         return "redirect:/inmueble/listarInmuebles";
+    }
+    
+    @GetMapping("/listarInmueblesPorBarrio/{id}")
+    public ResponseEntity<List<InmuebleDTO>> listarInmueblesPorBarrio(@PathVariable("id") UUID barrioId) {
+    	List<InmuebleDTO> inmuebles = inmuebleService.listarInmueblesPorBarrio(barrioId);
+        return ResponseEntity.ok(inmuebles);  // Devolver inmuebles en formato JSON
     }
 
 }

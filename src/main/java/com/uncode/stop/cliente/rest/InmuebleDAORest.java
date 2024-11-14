@@ -1,6 +1,7 @@
 package com.uncode.stop.cliente.rest;
 
 import com.uncode.stop.cliente.dtos.InmuebleDTO;
+import com.uncode.stop.cliente.dtos.LocalidadDTO;
 import com.uncode.stop.cliente.dtos.VisitanteDTO;
 import com.uncode.stop.cliente.entities.ResponseWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,4 +58,16 @@ public class InmuebleDAORest {
         return listaInmuebles;
     }
 
+	public List<InmuebleDTO> listarInmueblesPorBarrio(UUID barrioId) {
+	    String uri = baseUri + "/listarInmueblesPorBarrio/" + barrioId;
+
+	    ResponseEntity<List<InmuebleDTO>> response = restTemplate.exchange(
+	            uri, 
+	            HttpMethod.GET, 
+	            null, 
+	            new ParameterizedTypeReference<List<InmuebleDTO>>() {}
+	    );
+
+	    return response.getBody();
+	}
 }

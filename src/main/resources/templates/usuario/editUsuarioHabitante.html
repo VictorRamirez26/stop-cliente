@@ -114,13 +114,13 @@
 						<div class="card-body card-block">
 
 							<div class="form-group">
-								<input type="hidden" name="id" th:value="${empleado.id}" />
+								<input type="hidden" name="id" th:value="${habitante.id}" />
 								<input type="hidden" name="accion" th:value="${accion}" />
 								
 								<label for="cuenta">Cuenta</label> 
 								<input name="cuenta"
 									type="text" id="cuenta" placeholder="Ingrese la cuenta"
-									th:value="${empleado.usuario.cuenta}" class="form-control"
+									th:value="${habitante.usuario.cuenta}" class="form-control"
 									th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}" required>
 
 							</div>
@@ -152,26 +152,26 @@
                                     <option th:each="rol : ${roles}" 
                                             th:value="${rol}" 
                                             th:text="${rol}"
-                                            th:selected="${rol == empleado.usuario.rol}"></option>
+                                            th:selected="${rol == habitante.usuario.rol}"></option>
                                 </select>
                             </div>
 
 							<button type="submit" class="btn btn-dark"
-								formaction="/empleado/listarEmpleados" formmethod="GET" formnovalidate>Volver</button>
+								formaction="/habitante/listarHabitantes" formmethod="GET" formnovalidate>Volver</button>
 
 							<button th:if="${accion == 'CrearUsuario'}" type="submit"
 								class="btn btn-primary"
-								formaction="/empleado/actualizar-usuario" formmethod="POST">Crear
+								formaction="/habitante/actualizar-usuario" formmethod="POST">Crear
 								cuenta</button>
 
 							<button th:if="${accion == 'ModificarUsuario'}" type="submit"
 								class="btn btn-primary"
-								formaction="/empleado/actualizar-usuario" formmethod="POST">Modificar
+								formaction="/habitante/actualizar-usuario" formmethod="POST">Modificar
 								cuenta</button>
 
 							<button th:if="${accion == 'EliminarUsuario'}" type="submit"
 								class="btn btn-danger"
-								formaction="/empleado/eliminar-usuario" formmethod="POST">Eliminar
+								formaction="/habitante/eliminar-usuario" formmethod="POST">Eliminar
 								cuenta</button>
 
 						</div>

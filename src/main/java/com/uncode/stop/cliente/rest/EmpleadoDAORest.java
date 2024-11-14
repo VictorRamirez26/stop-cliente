@@ -37,7 +37,7 @@ public class EmpleadoDAORest {
 	
 	public void modificar(EmpleadoDTO empleado){
 		
-		 String uri = baseUri + empleado;
+		 String uri = baseUri + empleado.getId();
 		 restTemplate.put(uri, empleado);
 	
 	}

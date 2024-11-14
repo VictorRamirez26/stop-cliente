@@ -91,10 +91,15 @@ public class EmpleadoController {
     		@RequestParam(value = "accion") String accion,
     		ModelMap model) {
 
-    	EmpleadoDTO empleado = empleadoService.buscar(id);
+    	EmpleadoDTO empleado;
     	if (accion.equals("CrearUsuario")) {
+    		empleado = new EmpleadoDTO();
 			empleado.setUsuario(new UsuarioDTO());
+		}else {
+			empleado = empleadoService.buscar(id);
 		}
+    	
+    	
     	model.put("empleado", empleado);
     	model.put("accion", accion);
     	model.put("roles", Rol.values());
