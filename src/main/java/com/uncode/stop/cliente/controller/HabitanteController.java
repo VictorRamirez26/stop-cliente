@@ -80,12 +80,10 @@ public class HabitanteController {
     		@RequestParam(value = "accion") String accion,
     		ModelMap model) {
 
-    	HabitanteDTO habitante;
+    	HabitanteDTO habitante = habitanteService.buscar(id);
+    	
     	if (accion.equals("CrearUsuario")) {
-    		habitante = new HabitanteDTO();
     		habitante.setUsuario(new UsuarioDTO());
-		}else {
-			habitante = habitanteService.buscar(id);
 		}
     	model.put("habitante", habitante);
     	model.put("accion", accion);

@@ -91,14 +91,11 @@ public class EmpleadoController {
     		@RequestParam(value = "accion") String accion,
     		ModelMap model) {
 
-    	EmpleadoDTO empleado;
-    	if (accion.equals("CrearUsuario")) {
-    		empleado = new EmpleadoDTO();
-			empleado.setUsuario(new UsuarioDTO());
-		}else {
-			empleado = empleadoService.buscar(id);
-		}
+    	EmpleadoDTO empleado = empleadoService.buscar(id);
     	
+    	if (accion.equals("CrearUsuario")) {
+			empleado.setUsuario(new UsuarioDTO());
+		}
     	
     	model.put("empleado", empleado);
     	model.put("accion", accion);
@@ -114,7 +111,6 @@ public class EmpleadoController {
     		@RequestParam(value = "confirmarClave") String confirmarClave,
     		@RequestParam(value = "rol") Rol rol) {
     	
-    	System.out.println(id);
     	if (accion.equals("CrearUsuario")) {
 			empleadoService.crearUsuario(id, cuenta, clave, confirmarClave, rol);
 		}else {
