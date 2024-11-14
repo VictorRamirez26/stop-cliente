@@ -1,11 +1,18 @@
 package com.uncode.stop.cliente.dtos;
 
-import com.uncode.stop.cliente.enums.Rol;
+import java.util.UUID;
 
+import com.uncode.stop.cliente.enums.Rol;
+import com.uncode.stop.cliente.enums.TipoEmpleado;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class UsuarioDTO {
 
