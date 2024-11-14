@@ -19,6 +19,7 @@ import com.uncode.stop.cliente.dtos.LocalidadDTO;
 import com.uncode.stop.cliente.dtos.PaisDTO;
 import com.uncode.stop.cliente.dtos.ProvinciaDTO;
 import com.uncode.stop.cliente.dtos.UnidadNegocioDTO;
+import com.uncode.stop.cliente.dtos.UsuarioDTO;
 import com.uncode.stop.cliente.enums.Rol;
 import com.uncode.stop.cliente.enums.TipoEmpleado;
 import com.uncode.stop.cliente.services.EmpleadoService;
@@ -56,7 +57,7 @@ public class EmpleadoController {
 		}
 		model.put("empleado", empleado);
 		model.put("unidades", unidades);
-		model.put("tipoEmpleado", TipoEmpleado.values());
+		model.put("tipoEmpleados", TipoEmpleado.values());
 		model.put("accion", accion);
 		return "/empleado/editEmpleado.html";
 	}
@@ -90,14 +91,10 @@ public class EmpleadoController {
     		@RequestParam(value = "accion") String accion,
     		ModelMap model) {
 
-    	EmpleadoDTO empleado;
-    	
+    	EmpleadoDTO empleado = empleadoService.buscar(id);
     	if (accion.equals("CrearUsuario")) {
-			empleado = new EmpleadoDTO();
-		}else {
-			empleado = empleadoService.buscar(id);
+			empleado.setUsuario(new UsuarioDTO());
 		}
-    	
     	model.put("empleado", empleado);
     	model.put("accion", accion);
     	model.put("roles", Rol.values());
@@ -105,16 +102,18 @@ public class EmpleadoController {
     }
     
     @PostMapping("/actualizar-usuario")
-    public String editUsuario(@RequestParam("id") UUID id,
-    		@RequestParam(value = "accion") String accion,
+    public String editUsuario(@RequestParam(value = "id" , required = false) UUID id,
+    		@RequestParam(value = "accion", required = false) String accion,
     		@RequestParam(value = "cuenta") String cuenta,
     		@RequestParam(value = "clave") String clave,
+    		@RequestParam(value = "confirmarClave") String confirmarClave,
     		@RequestParam(value = "rol") Rol rol) {
     	
-    	if (accion.equals("Crear")) {
-			empleadoService.crearUsuario(id, cuenta, clave , rol);
+    	System.out.println(id);
+    	if (accion.equals("CrearUsuario")) {
+			empleadoService.crearUsuario(id, cuenta, clave, confirmarClave, rol);
 		}else {
-			empleadoService.modificarUsuario(id, cuenta, clave, rol);
+			empleadoService.modificarUsuario(id, cuenta, clave, confirmarClave ,rol);
 		}
     	
     	return "redirect:/empleado/listarEmpleados";

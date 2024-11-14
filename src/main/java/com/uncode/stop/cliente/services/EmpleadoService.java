@@ -25,7 +25,7 @@ public class EmpleadoService {
 		unidad.setId(unidadId);
 		
 		EmpleadoDTO empleado = EmpleadoDTO.builder().id(id).nombre(nombre).
-				apellido(apellido).legajo(legajo).unidad(unidad).tipoEmpleado(tipoEmpleado).build();
+				apellido(apellido).legajo(legajo).unidadDeNegocio(unidad).tipoEmpleado(tipoEmpleado).build();
 		
 		dao.crear(empleado);
 	}
@@ -36,7 +36,7 @@ public class EmpleadoService {
 		unidad.setId(unidadId);
 		
 		EmpleadoDTO empleado = EmpleadoDTO.builder().id(id).nombre(nombre).
-				apellido(apellido).legajo(legajo).unidad(unidad).tipoEmpleado(tipoEmpleado).build();
+				apellido(apellido).legajo(legajo).unidadDeNegocio(unidad).tipoEmpleado(tipoEmpleado).build();
 		
 		dao.modificar(empleado);
 	}
@@ -55,16 +55,16 @@ public class EmpleadoService {
 		return dao.listar();
 	}
 	
-	public void crearUsuario(UUID id, String cuenta, String clave, Rol rol) {
+	public void crearUsuario(UUID id, String cuenta, String clave,String confirmarClave, Rol rol) {
 		
-		UsuarioDTO usuario = UsuarioDTO.builder().cuenta(cuenta).clave(clave).rol(rol).build();
+		UsuarioDTO usuario = UsuarioDTO.builder().cuenta(cuenta).clave(clave).rol(rol).confirmarClave(confirmarClave).build();
 		EmpleadoDTO empleado = EmpleadoDTO.builder().id(id).usuario(usuario).build();
 		dao.crearUsuario(empleado);
 	}
 	
-	public void modificarUsuario(UUID id, String cuenta, String clave, Rol rol) {
+	public void modificarUsuario(UUID id, String cuenta, String clave,String confirmarClave, Rol rol) {
 		
-		UsuarioDTO usuario = UsuarioDTO.builder().cuenta(cuenta).clave(clave).rol(rol).build();
+		UsuarioDTO usuario = UsuarioDTO.builder().cuenta(cuenta).clave(clave).rol(rol).confirmarClave(confirmarClave).build();
 		EmpleadoDTO empleado = EmpleadoDTO.builder().id(id).usuario(usuario).build();
 		dao.modificarUsuario(empleado);
 	}

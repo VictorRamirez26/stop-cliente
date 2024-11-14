@@ -115,7 +115,8 @@
 
 							<div class="form-group">
 								<input type="hidden" name="id" th:value="${empleado.id}" />
-
+								<input type="hidden" name="accion" th:value="${accion}" />
+								
 								<label for="cuenta">Cuenta</label> 
 								<input name="cuenta"
 									type="text" id="cuenta" placeholder="Ingrese la cuenta"
@@ -129,6 +130,16 @@
 								<label for="clave">Clave</label> 
 								<input name="clave"
 									type="password" id="clave" placeholder="Ingrese la clave"
+									class="form-control"
+									th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}" required>
+
+							</div>
+							
+							<div class="form-group">
+
+								<label for="confirmarClave">Confirmar clave</label> 
+								<input name="confirmarClave"
+									type="password" id="confirmarClave" placeholder="Confirme su clave"
 									class="form-control"
 									th:disabled="${accion == 'Eliminar' OR accion == 'Consultar'}" required>
 
@@ -149,22 +160,23 @@
 
 							<button th:if="${accion == 'CrearUsuario'}" type="submit"
 								class="btn btn-primary"
-								formaction="/empleado/actualizar-cuenta" formmethod="POST">Crear
+								formaction="/empleado/actualizar-usuario" formmethod="POST">Crear
 								cuenta</button>
 
 							<button th:if="${accion == 'ModificarUsuario'}" type="submit"
 								class="btn btn-primary"
-								formaction="/empleado/actualizar-cuenta" formmethod="POST">Modificar
+								formaction="/empleado/actualizar-usuario" formmethod="POST">Modificar
 								cuenta</button>
 
 							<button th:if="${accion == 'EliminarUsuario'}" type="submit"
 								class="btn btn-danger"
-								formaction="/empleado/eliminar-cuenta" formmethod="POST">Eliminar
+								formaction="/empleado/eliminar-usuario" formmethod="POST">Eliminar
 								cuenta</button>
 
 						</div>
 
 					</form>
+					
 				</div>
 
 			</div>

@@ -51,7 +51,7 @@ public class EmpleadoDAORest {
 	
 	public void eliminar(UUID id){
 			
-		String uri = baseUri + id;
+		String uri = baseUri + "/"+ id;
 		restTemplate.delete(uri);
 	}
 	

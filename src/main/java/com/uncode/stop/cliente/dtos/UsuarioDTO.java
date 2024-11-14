@@ -18,5 +18,6 @@ public class UsuarioDTO {
 
 	private String cuenta;
 	private String clave;
+	private String confirmarClave;
 	private Rol rol;
 }

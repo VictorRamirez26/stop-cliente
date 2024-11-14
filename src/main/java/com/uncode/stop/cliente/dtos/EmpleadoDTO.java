@@ -19,8 +19,8 @@ public class EmpleadoDTO {
 	private String apellido;
 	private String legajo;
 	private TipoEmpleado tipoEmpleado;
-	private UUID unidadDeNegocio;
-	private UnidadNegocioDTO unidad = new UnidadNegocioDTO();
+	//private UUID unidadDeNegocio;
+	private UnidadNegocioDTO unidadDeNegocio = new UnidadNegocioDTO();
 	//private ContactoDTO contacto;
 	private UsuarioDTO usuario = new UsuarioDTO();
 }
