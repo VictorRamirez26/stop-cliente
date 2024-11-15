@@ -79,7 +79,7 @@ public class EmpleadoController {
 				empleadoService.modificar(id, nombre, apellido, legajo, unidadId, tipoEmpleado);
 			}
 		} catch (HttpStatusCodeException e) {
-			model.put("error", e.getMessage());
+			model.put("error", e.getResponseBodyAsString());
 			return "/empleado/editEmpleado.html";
 		}
         
