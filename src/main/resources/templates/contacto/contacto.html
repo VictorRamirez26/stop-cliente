@@ -53,18 +53,22 @@
 								        <tr th:each="persona : ${personas}">
 								        
 									            <td>
-									                <div class="dropdown">
-									                    <button class="btn btn-secondary dropdown-toggle custom-dropdown" type="button" aria-haspopup="true" aria-expanded="false">
-									                        Opciones
-									                    </button>
-									                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									                        <!-- Opción de Consultar Teléfonos -->
-									                        <a class="dropdown-item" th:href="@{/contacto/consultar-telefonos(id=${persona.id})}">Consultar Teléfonos</a>
-									                        <a class="dropdown-item" th:href="@{/contacto/consultar-correos(id=${persona.id})}">Consultar Correos</a>
-									                    </div>
-									                </div>
-									            </td>
-								                
+													<div class="dropdown">
+													    <button class="btn btn-secondary dropdown-toggle custom-dropdown" type="button" aria-haspopup="true" aria-expanded="false">
+													        Opciones
+													    </button>
+													    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													        <!-- Opción de Consultar Teléfonos con icono -->
+													        <a class="dropdown-item" th:href="@{/contacto/consultar-telefonos(id=${persona.id})}">
+													            <i class="ti ti-mobile"></i> Consultar Teléfonos
+													        </a>
+													        <!-- Opción de Consultar Correos con icono -->
+													        <a class="dropdown-item" th:href="@{/contacto/consultar-correos(id=${persona.id})}">
+													            <i class="ti ti-email"></i> Consultar Correos
+													        </a>
+													    </div>
+													</div>
+
 												<td th:text="${persona.nombre}">Nombre</td>
 												<td th:text="${persona.apellido}">Apellido</td>	
 											</tr>
