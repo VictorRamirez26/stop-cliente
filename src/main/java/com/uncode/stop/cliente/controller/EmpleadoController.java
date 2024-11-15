@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.HttpStatusCodeException;
 
 import com.uncode.stop.cliente.dtos.DepartamentoDTO;
 import com.uncode.stop.cliente.dtos.EmpleadoDTO;
@@ -71,12 +72,17 @@ public class EmpleadoController {
     		@RequestParam(value = "tipoEmpleado") TipoEmpleado tipoEmpleado,
     		@RequestParam(value = "accion" , defaultValue = "Crear") String accion, 
     		ModelMap model) {
-    	
-        if (id == null) {
-        	empleadoService.crear(id, nombre, apellido, legajo, unidadId, tipoEmpleado);
-        } else {
-        	empleadoService.modificar(id, nombre, apellido, legajo, unidadId, tipoEmpleado);
-        }
+    	try {
+			if (id == null) {
+				empleadoService.crear(id, nombre, apellido, legajo, unidadId, tipoEmpleado);
+			} else {
+				empleadoService.modificar(id, nombre, apellido, legajo, unidadId, tipoEmpleado);
+			}
+		} catch (HttpStatusCodeException e) {
+			model.put("error", e.getMessage());
+			return "/empleado/editEmpleado.html";
+		}
+        
         return "redirect:/empleado/listarEmpleados";
     }
 
