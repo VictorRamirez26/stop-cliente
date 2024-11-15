@@ -8,6 +8,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.uncode.stop.cliente.dtos.EmpleadoDTO;
@@ -61,14 +62,20 @@ public class EmpleadoDAORest {
 		restTemplate.delete(uri);
 	}
 		
-	public EmpleadoDTO buscar(UUID id) {
+	public EmpleadoDTO buscar(UUID id) throws HttpClientErrorException{
 			
 		String uri = baseUri + "/"+ id;
-		
-		ResponseEntity<EmpleadoDTO> response = restTemplate.getForEntity(uri,EmpleadoDTO.class);
-		EmpleadoDTO empleado = response.getBody();
-		
-		return  empleado;
+		try {
+			ResponseEntity<EmpleadoDTO> response = restTemplate.getForEntity(uri,EmpleadoDTO.class);
+			EmpleadoDTO empleado = response.getBody();
+			return  empleado;
+			
+		} catch (HttpClientErrorException e) {
+			throw e;
+			// TODO: handle exception
+		}catch (Exception ex) {
+			throw ex;
+		}
 	}
 	
 	public List<EmpleadoDTO> listar(){

@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import com.uncode.stop.cliente.dtos.EmpleadoDTO;
 import com.uncode.stop.cliente.dtos.UnidadNegocioDTO;
@@ -42,9 +43,15 @@ public class EmpleadoService {
 	}
 
 	public EmpleadoDTO buscar(UUID id){
-		
-		EmpleadoDTO empleado = dao.buscar(id);
-		return empleado;
+		try {
+			
+			EmpleadoDTO empleado = dao.buscar(id);
+			return empleado;
+		} catch (HttpClientErrorException e) {
+			throw e;
+		}catch (Exception ex) {
+			throw ex;
+		}
 	}
 
 	public void eliminar(UUID id) {

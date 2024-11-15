@@ -1,5 +1,7 @@
 package com.uncode.stop.cliente.dtos;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.uncode.stop.cliente.enums.TipoEmpleado;
@@ -19,8 +21,7 @@ public class EmpleadoDTO {
 	private String apellido;
 	private String legajo;
 	private TipoEmpleado tipoEmpleado;
-	//private UUID unidadDeNegocio;
 	private UnidadNegocioDTO unidadDeNegocio = new UnidadNegocioDTO();
-	//private ContactoDTO contacto;
+	private List<ContactoDTO> contactos = new ArrayList<ContactoDTO>();
 	private UsuarioDTO usuario = new UsuarioDTO();
 }

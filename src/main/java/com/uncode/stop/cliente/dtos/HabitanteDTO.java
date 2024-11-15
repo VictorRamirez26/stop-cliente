@@ -1,5 +1,7 @@
 package com.uncode.stop.cliente.dtos;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.uncode.stop.cliente.enums.TipoEmpleado;
@@ -18,6 +20,6 @@ public class HabitanteDTO {
 	private String nombre;
 	private String apellido;
 	private InmuebleDTO inmueble = new InmuebleDTO();
-	//private ContactoDTO contacto;
+	private List<ContactoDTO> contactos = new ArrayList<ContactoDTO>();
 	private UsuarioDTO usuario = new UsuarioDTO();
 }

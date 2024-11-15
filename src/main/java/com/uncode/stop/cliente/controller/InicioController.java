@@ -41,7 +41,7 @@ public class InicioController {
 			@RequestParam TipoTelefono tipoTelefono,
 			@RequestParam String email) {
 		
-		personaService.crear(nombre, apellido, legajo, tipoEmpleado, tipoContacto, observacion, telefono, tipoTelefono, email);
+		//personaService.crear(nombre, apellido, legajo, tipoEmpleado, tipoContacto, observacion, telefono, tipoTelefono, email);
 		return "index.html";
 	}
 	
